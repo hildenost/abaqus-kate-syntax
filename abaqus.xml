@@ -4,18 +4,14 @@
 <language name="Abaqus" version="1" kateversion="5.0" section="Scientific" extensions="*.inp" casesensitive="0" author="Hilde Aas Nøst" license="">
 <highlighting>
     <contexts>
-        <context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" >
-            <keyword attribute="Keyword" context="#stay" String="somename" />
-            <DetectChar attribute="String" context="string" char="&quot;" />
+        <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+            <Detect2Chars context="Comment" char="*" char1="*" />
         </context>
-        <context attribute="String" lineEndContext="#stay" name="string" >
-            <DetectChar attribute="String" context="#pop" char="&quot;" />
-        </context>
+        <context attribute="Comment" lineEndContext="#pop" name="Comment" />
     </contexts>
     <itemDatas>
-        <itemData name="Normal Text" defStyleNum="dsNormal" />
-        <itemData name="Keyword" defStyleNum="dsKeyword" />
-        <itemData name="String" defStyleNum="dsString" />
+        <itemData name="Normal" defStyleNum="dsNormal" />
+        <itemData name="Comment" defStyleNum="dsComment" />
     </itemDatas>
 </highlighting>
 <general>
