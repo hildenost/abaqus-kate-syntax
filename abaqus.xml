@@ -6,12 +6,30 @@
     <contexts>
         <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
             <Detect2Chars context="Comment" char="*" char1="*" />
+            <DetectChar context="Keyword" char="*" />
+            <Int context="Number" />
+            <Float context="Number" />
         </context>
         <context attribute="Comment" lineEndContext="#pop" name="Comment" />
+        <context attribute="Keyword" lineEndContext="#pop" name="Keyword">
+            <DetectChar context="Attribute" char="," />
+            <DetectChar context="Value" char="="/>
+        </context>
+        <context attribute="Attribute" lineEndContext="Normal" name="Attribute">
+            <DetectChar context="Value" char="="/>
+        </context>
+        <context attribute="Value" lineEndContext="#pop" name="Value">
+            <DetectChar context="#pop" char="," />
+        </context>
+        <context attribute="Number" name="Number" lineEndContext="#pop" />
     </contexts>
     <itemDatas>
         <itemData name="Normal" defStyleNum="dsNormal" />
         <itemData name="Comment" defStyleNum="dsComment" />
+        <itemData name="Keyword" defStyleNum="dsKeyword" />
+        <itemData name="Value" defStyleNum="dsNormal" />
+        <itemData name="Number" defStyleNum="dsFloat" />
+        <itemData name="Attribute" defStyleNum="dsBuiltIn" />
     </itemDatas>
 </highlighting>
 <general>
