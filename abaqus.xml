@@ -12,8 +12,7 @@
         </context>
         <context attribute="Comment" lineEndContext="#pop" name="Comment" />
         <context attribute="Keyword" lineEndContext="#pop" name="Keyword">
-            <DetectChar context="Attribute" char="," />
-            <DetectChar context="Value" char="="/>
+            <DetectChar context="#pop" char="," />
         </context>
         <context attribute="Attribute" lineEndContext="Normal" name="Attribute">
             <DetectChar context="Value" char="="/>
@@ -21,7 +20,9 @@
         <context attribute="Value" lineEndContext="#pop" name="Value">
             <DetectChar context="#pop" char="," />
         </context>
-        <context attribute="Number" name="Number" lineEndContext="#pop" />
+        <context attribute="Number" name="Number" lineEndContext="#pop">
+            <DetectChar context="#pop" char="," />
+        </context>
     </contexts>
     <itemDatas>
         <itemData name="Normal" defStyleNum="dsNormal" />
