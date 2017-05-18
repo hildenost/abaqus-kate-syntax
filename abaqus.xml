@@ -14,13 +14,17 @@
         <context attribute="Error" lineEndContext="#stay" name="Error" />
         <context attribute="Comment" lineEndContext="#pop" name="Comment" />
         <context attribute="Keyword" lineEndContext="#pop" name="Keyword">
-            <DetectChar context="#pop" char="," />
+            <DetectChar context="keywordDelimiter" char="," />
         </context>
         <context attribute="Attribute" lineEndContext="Normal" name="Attribute">
+            <DetectChar context="keywordDelimiter" char="," />
             <DetectChar context="Value" char="="/>
         </context>
         <context attribute="Value" lineEndContext="#pop" name="Value">
-            <DetectChar context="#pop" char="," />
+            <DetectChar context="keywordDelimiter" char="," />
+        </context>
+        <context attribute="keywordDelimiter" name="keywordDelimiter">
+            <RegExpr context="Attribute" String="." />
         </context>
         <context attribute="Number" name="Number" lineEndContext="#pop">
             <DetectChar context="#pop" char="," />
@@ -28,6 +32,7 @@
     </contexts>
     <itemDatas>
         <itemData name="Normal" defStyleNum="dsNormal" />
+        <itemData name="Delimiter" defStyleNum="dsNormal" />
         <itemData name="Comment" defStyleNum="dsComment" />
         <itemData name="Keyword" defStyleNum="dsKeyword" />
         <itemData name="Value" defStyleNum="dsNormal" />
