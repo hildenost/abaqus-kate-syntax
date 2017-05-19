@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language>
-<!-- Abaqus input file syntax highlightning v0.01 by Hilde Aas Nøst -->
+<!-- Abaqus input file syntax highlightning v1.0.0 by Hilde Aas Nøst -->
 <language name="Abaqus" version="1" kateversion="5.0" section="Scientific" extensions="*.inp" casesensitive="0" author="Hilde Aas Nøst" license="">
 <highlighting>
     <contexts>
@@ -8,8 +8,7 @@
             <RegExpr context="Error" String="^[ \t]+\*" />
             <Detect2Chars context="Comment" char="*" char1="*" />
             <DetectChar context="Keyword" char="*" />
-            <Int context="Number" />
-            <Float context="Number" />
+	    <RegExpr context="Number" String="[0-9]+\.?[0-9]*([eE]-[0-9]+)?(?=[,\s]|$)" />
         </context>
         <context attribute="Error" lineEndContext="#stay" name="Error" />
         <context attribute="Comment" lineEndContext="#pop" name="Comment" />
@@ -21,12 +20,14 @@
             <DetectChar context="Value" char="="/>
         </context>
         <context attribute="Value" lineEndContext="#pop" name="Value">
+	    <RegExpr context="Number" String="[0-9]+\.?[0-9]*([eE]-[0-9]+)?(?=[,\s]|$)" />
             <DetectChar context="keywordDelimiter" char="," />
         </context>
         <context attribute="keywordDelimiter" name="keywordDelimiter">
             <RegExpr context="Attribute" String="." />
         </context>
         <context attribute="Number" name="Number" lineEndContext="#pop">
+	    <RegExpr context="Normal" String="[\D\.]|^([eE]-)" />
             <DetectChar context="#pop" char="," />
         </context>
     </contexts>
